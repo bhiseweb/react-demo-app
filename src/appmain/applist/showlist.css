@@ -1,0 +1,15 @@
+.container li{
+  list-style: none;
+  margin:auto;
+  padding: 5px;
+}
+.container ul{
+  margin: auto;
+  border-spacing: 2px;
+  text-align: center;
+  width: 400px;
+}
+.showlist button{
+  position: absolute;
+  right: 0;
+}

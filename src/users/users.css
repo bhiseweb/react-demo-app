@@ -1,0 +1,23 @@
+.list-group ul{
+  text-align: center;
+  background: #cce5ff;
+  margin: auto;
+  border-spacing: 2px;
+  text-align: center;
+  max-width: 100%;
+  height:170px;
+  display: inline;
+}
+.list-group li{
+  list-style: none;
+  margin: auto;
+  padding: 5px;
+}
+.user-container{
+  margin: auto;
+  text-align: center;
+  width: 500px;
+  list-style: none;
+  margin:auto;
+  padding: 5px;
+}
