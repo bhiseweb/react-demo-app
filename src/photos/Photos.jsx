@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
+import {fetchPhotos} from './FetchPhotoData';
 import Pagination from 'react-js-pagination';
 
 class Photos extends Component {
@@ -19,24 +19,13 @@ class Photos extends Component {
     });
   }
 
-  loadPhotosFromServer() {
-    $.ajax({
-      url      : 'https://jsonplaceholder.typicode.com/photos',
-      dataType : 'json',
-      type     : 'GET',
-
-      success: data => {
-        this.setState({photos: data});
-      },
-
-      error: (xhr, status, err) => {
-        console.error('https://jsonplaceholder.typicode.com/photos', status, err.toString());
-      }
-    });
-  }
-
   componentDidMount() {
-    this.loadPhotosFromServer();
+    fetchPhotos()
+      .then( (data) => {
+        this.setState({
+          photos: data
+        });
+      });
   }
 
   render() {
@@ -49,7 +38,7 @@ class Photos extends Component {
 
     const renderphotos = currentphoto.map((photos, index) => {
     return(
-      <div className="col-lg-3 col-sm-4 col-xs-6" key={index}><a><img className="thumbnail img-responsive" src={photos.url}/></a></div>);
+      <div className="col-lg-3 col-sm-4 col-xs-6" key={index}><a><img className="thumbnail img-responsive" src={photos.url} /></a></div>);
     });
 
     return(

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
 import MoreDetails from './MoreDetails';
+import {fetchUsers} from './FetchUserData';
 import Pagination from 'react-js-pagination';
 import './users.css';
 
@@ -24,29 +24,18 @@ class Users extends Component {
     });
   }
 
-  loadUsersFromServer() {
-    $.ajax({
-      url      : "https://jsonplaceholder.typicode.com/users",
-      dataType : 'json',
-      type     : 'GET',
-
-      success: data => {
-        this.setState({users: data});
-      },
-
-      error: (xhr, status, err) => {
-        console.error("https://jsonplaceholder.typicode.com/users", status, err.toString());
-      }
-    });
-  }
-
   detailsModal(user){
     this.setState({showModal: true });
     this.setState({modalusers: user});
   }
 
   componentDidMount() {
-    this.loadUsersFromServer();
+    fetchUsers()
+      .then( (data) => {
+        this.setState({
+          users: data
+        });
+      });
   }
 
   render() {

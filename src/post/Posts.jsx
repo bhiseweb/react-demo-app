@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
 import Show from './Show';
+import {fetchPost} from './FetchPostData';
 import './post.css'
 
 class Posts extends Component {
@@ -14,7 +14,12 @@ class Posts extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount() {
-    this.loadPostFromServer();
+    fetchPost()
+      .then( (data) => {
+        this.setState({
+          post: data
+        });
+      });
   }
 
   handleClick(e) {
@@ -22,27 +27,9 @@ class Posts extends Component {
 
     var userid = this.refs.userid.value;
     var currentPost= this.state.post.filter(function(item){
-      return item.userId==userid
+      return item.userId == userid
     });
     this.setState({currentPost:currentPost, show: true});
-  }
-
-  loadPostFromServer() {
-
-    var root = 'https://jsonplaceholder.typicode.com/posts';
-    $.ajax({
-      url      : root,
-      dataType : 'json',
-      type     : 'GET',
-
-      success: data => {
-        this.setState({post: data})
-      },
-
-      error: (xhr, status, err) => {
-        console.error(root, status, err.toString());
-      }
-    });
   }
 
   render() {
