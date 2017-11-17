@@ -1,16 +1,11 @@
-import React, {Component} from 'react'
-import { Switch, Route } from 'react-router-dom'
-import AppMain from './appmain/AppMain.jsx'
-import Users from './users/Users'
-import Posts from './post/Posts'
-import Albums from './albums/Albums'
-import Photos from './photos/Photos'
+import React, {Component} from 'react';
+import { Switch, Route } from 'react-router-dom';
+import AppMain from './containers/AppMain';
+import Users from './containers/Users';
+import Posts from './containers/Posts';
+import Albums from './containers/Albums';
+import Photos from './containers/Photos';
 
-// The Main component renders one of the three provided
-// Routes (provided that one matches). Both the /roster
-// and /schedule routes will match any pathname that starts
-// with /roster or /schedule. The / route will only match
-// when the pathname is exactly the string "/"
 class Menu extends Component {
   render() {
     return (

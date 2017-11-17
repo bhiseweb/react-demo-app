@@ -4,7 +4,7 @@ class MoreDetails extends Component {
   render() {
     return (
       <div>
-        <div className="modal"id="myModal" role="dialog">
+        <div className="modal" id="myModal" role="dialog">
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">

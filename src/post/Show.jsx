@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
-import './post.css'
+import '../css/post.css'
 
 class Show extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      userPost: [],
-    }
-  }
-  render() {
 
+  render() {
     const renderpost = this.props.userPost.map((post, index) => {
       return (
         <div className="post-row" key={index} >
@@ -24,7 +18,7 @@ class Show extends Component {
     return (
       <div className="container">
         <div className="panel panel-info">
-          <div className="panel-heading"> Post for UserID:{ this.props.userPost[0].userID}</div>
+          <div className="panel-heading"> Post for UserID:</div>
             <div className="panel-body">
               <ul className="list-group text-center col-sm-12 ">
                 {renderpost}

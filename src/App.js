@@ -4,6 +4,8 @@ import FooterMenu from './footer/FooterMenu';
 import Menu from './Menu';
 import './App.css';
 
+URL = 'http://localhost:3008/';
+
 class App extends Component {
   render() {
     return (

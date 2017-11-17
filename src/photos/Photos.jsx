@@ -1,44 +1,29 @@
 import React, { Component } from 'react';
-import {fetchPhotos} from './FetchPhotoData';
 import Pagination from 'react-js-pagination';
 
 class Photos extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      photos: [],
-      activePage: 1,
-      photosPerPage: 12
-    }
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(pageNumber) {
-    this.setState({
-      activePage: pageNumber
-    });
+    this.props.setActivePage(pageNumber);
   }
 
   componentDidMount() {
-    fetchPhotos()
-      .then( (data) => {
-        this.setState({
-          photos: data
-        });
-      });
+    this.props.loadPhotos();
   }
 
   render() {
 
-    const {photos, activePage, photosPerPage } = this.state;
-
-    const indexOfLastphoto = activePage * photosPerPage;
-    const indexOfFirstphoto = indexOfLastphoto - photosPerPage;
-    const currentphoto = photos.slice(indexOfFirstphoto, indexOfLastphoto);
+    const indexOfLastphoto = this.props.activePage * this.props.photosPerPage;
+    const indexOfFirstphoto = indexOfLastphoto - this.props.photosPerPage;
+    const currentphoto = this.props.photos.slice(indexOfFirstphoto, indexOfLastphoto);
 
     const renderphotos = currentphoto.map((photos, index) => {
     return(
-      <div className="col-lg-3 col-sm-4 col-xs-6" key={index}><a><img className="thumbnail img-responsive" src={photos.url} /></a></div>);
+      <div className="col-lg-3 col-sm-4 col-xs-6" key={index}><a><img alt="" className="thumbnail img-responsive" src={photos.url} /></a></div>);
     });
 
     return(
@@ -51,7 +36,7 @@ class Photos extends Component {
         </div>
         <div className="text-center">
           <Pagination
-            activePage={this.state.activePage}
+            activePage={this.props.activePage}
             itemsCountPerPage={12}
             totalItemsCount={5000}
             pageRangeDisplayed={10}

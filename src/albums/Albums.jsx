@@ -1,44 +1,41 @@
 import React, { Component } from 'react';
 import Pagination from 'react-js-pagination';
-import {fetchAlbums} from './FetchAlbumData';
 import AlbumsData from './AlbumData';
-import './album.css'
+import '../css/album.css'
 
 class Albums extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      albums: [],
-      activePage: 1,
-      albumPerPage: 10
-    }
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(pageNumber) {
-    this.setState({
-      activePage: pageNumber
-    });
+    this.props.setActivePage(pageNumber);
   }
 
   componentDidMount() {
-    fetchAlbums()
-      .then( (data) => {
-        this.setState({
-          albums: data
-        });
-      });
+    this.props.loadAlbums();
   }
 
   render() {
 
-    const {activePage, albumPerPage } = this.state;
+    const indexOfLastalbum = this.props.activePage * this.props.albumsPerPage;
+    const indexOfFirstalbum = indexOfLastalbum - this.props.albumsPerPage;
+    const currentalbums = this.props.albums.slice(indexOfFirstalbum, indexOfLastalbum);
+
+    const renderalbums = currentalbums.map((albums, index) => {
+      return (
+        <AlbumsData album={albums} key={index} />
+      );
+    });
 
     return(
       <div className="album-container">
       <h1>Albums: </h1>
-        <div>
-          <AlbumsData albums={this.state.albums} activePage={this.state.activePage} albumPerPage={this.state.albumPerPage} />
+        <div className="container text-center col-sm-12">
+        <ul className="list-group col-sm-12">
+          {renderalbums}
+        </ul>
         </div>
         <div className="text-center">
             <Pagination

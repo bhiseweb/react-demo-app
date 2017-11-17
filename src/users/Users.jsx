@@ -1,69 +1,43 @@
 import React, { Component } from 'react';
 import MoreDetails from './MoreDetails';
-import {fetchUsers} from './FetchUserData';
+import UserData from './UserData';
 import Pagination from 'react-js-pagination';
-import './users.css';
+import '../css/users.css';
 
 class Users extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      users: [],
-      activePage: 1,
-      userPerPage: 5,
-      showModal: false,
-      modalusers: []
-    }
     this.handleClick = this.handleClick.bind(this);
     this.detailsModal = this.detailsModal.bind(this);
   }
 
   handleClick(pageNumber) {
-    this.setState({
-      activePage: pageNumber
-    });
+    this.props.setActivePage(pageNumber);
   }
 
-  detailsModal(user){
-    this.setState({showModal: true });
-    this.setState({modalusers: user});
+  detailsModal(modalusers){
+    let showModal = true;
+    this.props.setShowModal(showModal);
+    this.props.setModalUsers(modalusers);
   }
 
   componentDidMount() {
-    fetchUsers()
-      .then( (data) => {
-        this.setState({
-          users: data
-        });
-      });
+    this.props.loadUsers();
   }
 
   render() {
+    const indexOfLastuser = this.props.activePage * this.props.usersPerPage;
+    const indexOfFirstuser = indexOfLastuser - this.props.usersPerPage;
+    const currentusers = this.props.users.slice(indexOfFirstuser, indexOfLastuser);
 
-    const { users, activePage, userPerPage } = this.state;
-
-    const indexOfLastuser = activePage * userPerPage;
-    const indexOfFirstuser = indexOfLastuser - userPerPage;
-    const currentusers = users.slice(indexOfFirstuser, indexOfLastuser);
-
-    const renderusers = currentusers.map((user, index) => {
+    const renderusers = currentusers.map((users, index) => {
       return (
-        <div className="user-container" key={index} >
-          <ul className="list-group text-center col-sm-10">
-            <li className="list-group-item list-group-item-info" >Name : {user.name}</li>
-            <li className="list-group-item list-group-item-info" >Email ID : {user.email}</li>
-            <li className="list-group-item list-group-item-info" >Address : {user.address.street}</li>
-            <li >
-              <button type="button" className="btn btn-info" data-toggle="modal" onClick={this.detailsModal.bind(this,user)} data-target="#myModal" >More Detail</button>
-            </li>
-          </ul>
-        </div>
+        <UserData user={users} detailsModal={this.detailsModal} key={index}/>
       );
     });
-
     return(
       <div className="user-container">
-        <h1>Users Listed Below: </h1>
+        <h1>Users: </h1>
         <div className="user-container text-center">
           <ul className="user-container list-group text-center col-sm-12">
             {renderusers}
@@ -71,14 +45,14 @@ class Users extends Component {
         </div>
         <div className="text-center">
           <Pagination
-            activePage={this.state.activePage}
+            activePage={this.props.activePage}
             itemsCountPerPage={5}
             totalItemsCount={10}
             pageRangeDisplayed={2}
             onChange={this.handleClick}
           />
         </div>
-        { this.state.showModal ? <MoreDetails modalusers={this.state.modalusers} /> : null}
+        { this.props.showModal ? <MoreDetails modalusers={this.props.modalusers} /> : null}
       </div>
     );
   }

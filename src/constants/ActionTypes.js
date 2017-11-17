@@ -1,0 +1,15 @@
+export const ADD_TASK = 'ADD_TASK';
+export const CREATE_INPUT = 'CREATE_INPUT';
+export const REMOVE_INPUT = 'REMOVE_INPUT'
+export const RESET_INPUT = 'RESET_INPUT';
+export const SHOW_TASK = 'SHOW_TASK';
+export const DELETE_TASK = 'DELETE_TASK';
+export const LOAD_PHOTOS = 'LOAD_PHOTOS';
+export const LOAD_ALBUMS = 'LOAD_ALBUMS';
+export const LOAD_POSTS = 'LOAD_POSTS';
+export const LOAD_USERS = 'LOAD_USERS';
+export const SET_SHOW_MODAL = 'SET_SHOW_MODAL';
+export const SET_MODAL_USERS = 'SET_MODAL_USERS';
+export const SET_ACTIVE_PAGE = 'SET_ACTIVE_PAGE';
+export const SET_SHOW = 'SET_SHOW';
+export const SET_CURRENT_POST = 'SET_CURRENT_POST';

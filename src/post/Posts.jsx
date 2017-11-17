@@ -1,35 +1,27 @@
 import React, { Component } from 'react';
 import Show from './Show';
-import {fetchPost} from './FetchPostData';
-import './post.css'
+import '../css/post.css'
 
 class Posts extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      post: [],
-      currentPost:[],
-      show:false
-    }
     this.handleClick = this.handleClick.bind(this);
   }
+
   componentDidMount() {
-    fetchPost()
-      .then( (data) => {
-        this.setState({
-          post: data
-        });
-      });
+    this.props.loadPosts();
   }
 
   handleClick(e) {
     e.preventDefault();
 
     var userid = this.refs.userid.value;
-    var currentPost= this.state.post.filter(function(item){
+    var currentPost= this.props.posts.filter(function(item){
       return item.userId == userid
     });
-    this.setState({currentPost:currentPost, show: true});
+    let show = true;
+    this.props.setShow(show);
+    this.props.setCurrentPost(currentPost);
   }
 
   render() {
@@ -41,7 +33,7 @@ class Posts extends Component {
           <button type="button" className="btn btn-primary" onClick={this.handleClick}>Post</button>
         </form>
         <div className="container">
-          { this.state.show ? <Show userPost={this.state.currentPost} /> : null }
+          { this.props.show ? <Show userPost={this.props.currentPost} /> : null }
         </div>
       </div>
     );

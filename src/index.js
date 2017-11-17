@@ -1,14 +1,25 @@
 import React from 'react';
-import {render} from 'react-dom';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import { BrowserRouter } from 'react-router-dom';
+import createSagaMiddleware from 'redux-saga';
+import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
+import todoApp from './reducers';
+import {rootLoad} from './sagas/rootSaga';
 import App from './App';
-import { BrowserRouter } from 'react-router-dom'
 import registerServiceWorker from './registerServiceWorker';
 
-render((
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-), document.getElementById('root'));
-
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(todoApp, applyMiddleware(sagaMiddleware));
+sagaMiddleware.run(rootLoad);
+render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById('root')
+)
 registerServiceWorker();

@@ -1,0 +1,18 @@
+.list-group ul{
+  background: #cce5ff;
+  border-style: groove;
+  margin: auto;
+  border-spacing: 2px;
+  text-align: center;
+  width: 1000px;
+  height:150px;
+}
+.list-group li{
+  list-style: none;
+  margin: auto;
+  padding: 7px;
+}
+.post-row{
+  width: 1000px;
+  text-align: center;
+}
