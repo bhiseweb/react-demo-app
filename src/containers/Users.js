@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { loadUsers, setActivePage, setShowModal, setModalUsers } from '../actions';
-import Users from '../users/Users';
+import Users from '../components/users/Users';
 
 const mapStateToProps = state => ({
   users: state.Users.users,

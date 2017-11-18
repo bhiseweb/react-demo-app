@@ -13,3 +13,5 @@ export const SET_MODAL_USERS = 'SET_MODAL_USERS';
 export const SET_ACTIVE_PAGE = 'SET_ACTIVE_PAGE';
 export const SET_SHOW = 'SET_SHOW';
 export const SET_CURRENT_POST = 'SET_CURRENT_POST';
+export const CREATE_USER = 'CREATE_USER';
+export const USER_CREATED = 'USER_CREATED';

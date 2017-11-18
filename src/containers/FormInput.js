@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { createInput, addTask, resetInput, removeInput } from '../actions';
-import FormInput from '../component/FormInput';
+import FormInput from '../components/FormInput';
 
 const mapStateToProps = state => ({
    value: state.Value.value,

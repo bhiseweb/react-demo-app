@@ -1,4 +1,4 @@
-import { SET_ACTIVE_PAGE, SET_MODAL_USERS, SET_SHOW_MODAL } from '../constants/ActionTypes'
+import { SET_ACTIVE_PAGE, SET_MODAL_USERS, SET_SHOW_MODAL, CREATE_USER, USER_CREATED } from '../constants/ActionTypes'
 
 const initialState = {
   id: 1,
@@ -7,7 +7,8 @@ const initialState = {
   activePage: 1,
   usersPerPage: 5,
   showModal: false,
-  modalusers: []
+  modalusers: [],
+  user: {}
 };
 
 const Users = (state = initialState, action) => {
@@ -21,6 +22,10 @@ const Users = (state = initialState, action) => {
       return {...state, modalusers: action.text};
     case SET_SHOW_MODAL:
       return {...state, showModal: action.text};
+    case CREATE_USER:
+      return {...state, user: action.payload};
+    case USER_CREATED:
+      return {...state, user: action.user};
     default:
       return state
   }

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import MoreDetails from './MoreDetails';
 import UserData from './UserData';
 import Pagination from 'react-js-pagination';
-import '../css/users.css';
+import { Link } from 'react-router-dom';
+import './users.css';
 
 class Users extends Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class Users extends Component {
     });
     return(
       <div className="user-container">
+        <Link to='/CreateUser' className="btn btn-primary">New User</Link>
         <h1>Users: </h1>
         <div className="user-container text-center">
           <ul className="user-container list-group text-center col-sm-12">
@@ -47,7 +49,7 @@ class Users extends Component {
           <Pagination
             activePage={this.props.activePage}
             itemsCountPerPage={5}
-            totalItemsCount={10}
+            totalItemsCount={this.props.users.length}
             pageRangeDisplayed={2}
             onChange={this.handleClick}
           />

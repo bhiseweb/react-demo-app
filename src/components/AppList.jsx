@@ -1,5 +1,5 @@
 import React from 'react';
-import ShowList from '../component/ShowList';
+import ShowList from '../components/ShowList';
 
 class AppList extends React.Component {
 

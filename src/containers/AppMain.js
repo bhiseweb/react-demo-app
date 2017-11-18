@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { showTask, deleteTask } from '../actions';
-import AppMain from '../component/AppMain';
+import AppMain from '../components/AppMain';
 
 const mapStateToProps = state => ({
   task: state.Task.task

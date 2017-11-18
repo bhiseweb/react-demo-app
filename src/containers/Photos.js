@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { loadPhotos, setActivePage } from '../actions';
-import Photos from '../photos/Photos';
+import Photos from '../components/photos/Photos';
 
 const mapStateToProps = state => ({
   photos: state.Photos.photos,

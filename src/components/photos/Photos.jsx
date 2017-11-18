@@ -20,8 +20,8 @@ class Photos extends Component {
     const indexOfLastphoto = this.props.activePage * this.props.photosPerPage;
     const indexOfFirstphoto = indexOfLastphoto - this.props.photosPerPage;
     const currentphoto = this.props.photos.slice(indexOfFirstphoto, indexOfLastphoto);
-
     const renderphotos = currentphoto.map((photos, index) => {
+
     return(
       <div className="col-lg-3 col-sm-4 col-xs-6" key={index}><a><img alt="" className="thumbnail img-responsive" src={photos.url} /></a></div>);
     });
@@ -38,7 +38,7 @@ class Photos extends Component {
           <Pagination
             activePage={this.props.activePage}
             itemsCountPerPage={12}
-            totalItemsCount={5000}
+            totalItemsCount={this.props.photos.length}
             pageRangeDisplayed={10}
             onChange={this.handleClick}
           />

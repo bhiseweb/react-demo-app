@@ -1,7 +1,7 @@
 import { CREATE_INPUT, REMOVE_INPUT, SHOW_TASK, RESET_INPUT, ADD_TASK,
   DELETE_TASK, LOAD_PHOTOS, LOAD_USERS, LOAD_ALBUMS, LOAD_POSTS,
   SET_MODAL_USERS, SET_SHOW_MODAL, SET_ACTIVE_PAGE, SET_CURRENT_POST,
-  SET_SHOW  } from '../constants/ActionTypes'
+  SET_SHOW, CREATE_USER  } from '../constants/ActionTypes'
 
 export const createInput = text => ({ type: CREATE_INPUT, text });
 export const removeInput = text => ({ type: REMOVE_INPUT, text });
@@ -18,3 +18,4 @@ export const setModalUsers = text => ({ type: SET_MODAL_USERS, text });
 export const setActivePage = text => ({ type: SET_ACTIVE_PAGE, text });
 export const setCurrentPost = text => ({ type: SET_CURRENT_POST, text });
 export const setShow = text => ({ type: SET_SHOW, text });
+export const createUser = payload => ({ type: CREATE_USER, payload });

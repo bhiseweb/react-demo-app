@@ -5,6 +5,7 @@ import Users from './containers/Users';
 import Posts from './containers/Posts';
 import Albums from './containers/Albums';
 import Photos from './containers/Photos';
+import CreateUser from './containers/CreateUser';
 
 class Menu extends Component {
   render() {
@@ -16,6 +17,7 @@ class Menu extends Component {
           <Route path='/Posts'  component={Posts} />
           <Route path='/Albums' component={Albums} />
           <Route path='/Photos' component={Photos} />
+          <Route path='/CreateUser' component={CreateUser} />
         </Switch>
       </menu>
     )

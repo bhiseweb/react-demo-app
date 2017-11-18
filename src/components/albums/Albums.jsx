@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Pagination from 'react-js-pagination';
 import AlbumsData from './AlbumData';
-import '../css/album.css'
+import './album.css'
 
 class Albums extends Component {
   constructor(props) {
@@ -41,7 +41,7 @@ class Albums extends Component {
             <Pagination
               activePage={this.props.activePage}
               itemsCountPerPage={10}
-              totalItemsCount={100}
+              totalItemsCount={this.props.albums.length}
               pageRangeDisplayed={5}
               onChange={this.handleClick}
             />

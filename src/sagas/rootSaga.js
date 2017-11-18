@@ -1,7 +1,7 @@
 import {all} from 'redux-saga/effects';
 import {loadPhotos} from './photoSaga';
 import {loadAlbums} from './albumSaga';
-import {loadUsers} from './usersSaga';
+import {loadUsers, saveUser} from './usersSaga';
 import {loadPosts} from './postSaga';
 
 export function* rootLoad() {
@@ -9,6 +9,7 @@ export function* rootLoad() {
     loadPhotos(),
     loadAlbums(),
     loadUsers(),
-    loadPosts()
+    loadPosts(),
+    saveUser()
   ])
 }

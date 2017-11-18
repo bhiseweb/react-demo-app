@@ -12,14 +12,12 @@ app.use(cors());
 
 var port = process.env.PORT || 3008;
 
-app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 var router = express.Router();
 
 router.use(function(req, res, next) {
-
-    console.log('hello todo');
     next();
 });
 
@@ -33,10 +31,11 @@ app.all('/*', function (req, res, next) {
     next();
 });
 
-var users = require('./models/userModel');
+var User = require('./models/userModel');
+
 
 router.get('/users', (req, res, next) => {
-  users.find({},function(err,data){
+  User.find({},function(err,data){
     if(err){
       res.send(err);
     }
@@ -47,10 +46,23 @@ router.get('/users', (req, res, next) => {
   });
 });
 
-var post = require('./models/postModel');
+router.post('/users', (req, res, next) => {
+  let user = new User(req.body)
+  user.save(function(err,data){
+    if(err){
+      res.send(err);
+    }
+    else{
+      res.send(data);
+      console.log(data);
+    }
+  });
+});
+
+var Post = require('./models/postModel');
 
 router.get('/post', (req, res, next) => {
-  post.find({},function(err,data){
+  Post.find({},function(err,data){
     if(err){
       res.send(err);
     }
@@ -61,10 +73,10 @@ router.get('/post', (req, res, next) => {
   });
 });
 
-var photos = require('./models/photosModel');
+var Photo = require('./models/photosModel');
 
 router.get('/photos', (req, res, next) => {
-  photos.find({},function(err,data){
+  Photo.find({},function(err,data){
     if(err){
       res.send(err);
     }
@@ -75,10 +87,10 @@ router.get('/photos', (req, res, next) => {
   });
 });
 
-var albums = require('./models/albumsModel');
+var Album = require('./models/albumsModel');
 
 router.get('/albums', (req, res, next) => {
-  albums.find({},function(err,data){
+  Album.find({},function(err,data){
     if(err){
       res.send(err);
     }

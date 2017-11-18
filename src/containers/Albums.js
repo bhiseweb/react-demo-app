@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { loadAlbums, setActivePage } from '../actions';
-import Albums from '../albums/Albums';
+import Albums from '../components/albums/Albums';
 
 const mapStateToProps = state => ({
   albums: state.Albums.albums,

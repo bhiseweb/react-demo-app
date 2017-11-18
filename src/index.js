@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter } from 'react-router-dom';
 import createSagaMiddleware from 'redux-saga';
-import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 import todoApp from './reducers';
 import {rootLoad} from './sagas/rootSaga';

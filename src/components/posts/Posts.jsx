@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Show from './Show';
-import '../css/post.css'
+import './post.css'
 
 class Posts extends Component {
   constructor(props) {

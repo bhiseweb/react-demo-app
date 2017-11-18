@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../css/post.css'
+import './post.css'
 
 class Show extends Component {
 
